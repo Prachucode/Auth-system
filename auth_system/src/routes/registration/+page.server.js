@@ -37,11 +37,11 @@ export const actions = {
 			});
 		}
 
-		const hashedpassword = bcrypt.hash(password, 10)
+		const hashedPassword = bcrypt.hash(password, 10)
 		await User.create({
 			username: data.name,
 			email: data.email,
-			password: hashedpassword
+			password: hashedPassword
 		})
 		return {
 			success: true
