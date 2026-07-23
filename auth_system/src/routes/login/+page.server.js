@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import User from '$lib/server/models/UserModel.js';
 import { connectDB } from '$lib/server/db.js';
-
+import jwt from 'jsonwebtoken'
 export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
@@ -43,6 +43,9 @@ export const actions = {
 				values: data
 			});
 		}
+        const token = jwt.sign(payload, process.env.secretstr, {
+                    expiresIn: '8h'
+                })  
 
         return {
 			success: true,
