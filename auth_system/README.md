@@ -1,42 +1,92 @@
-# sv
+# Auth System
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Auth System is a modern authentication starter built with SvelteKit, MongoDB, and secure backend practices. It provides a solid foundation for applications that need user registration, validation, and account-management workflows with a polished, production-style structure.
 
-## Creating a project
+## Overview
 
-If you're seeing this, you've probably already done this step. Congrats!
+This project is designed as a scalable starting point for SaaS products, internal tools, and customer-facing applications that require a reliable authentication layer. The codebase is organized around clear routes, reusable server logic, and validation-driven form handling.
 
-```sh
-# create a new project
-npx sv create my-app
+### Key features
+
+- Secure user registration flow
+- Input validation using Zod
+- Password hashing with bcrypt
+- MongoDB-backed persistence through Mongoose
+- Modular SvelteKit route structure
+- Tailwind-based UI styling
+
+## Tech stack
+
+- Frontend: SvelteKit, Svelte, Tailwind CSS, Vite
+- Backend: Node.js, SvelteKit server actions
+- Data layer: MongoDB with Mongoose
+- Security: bcrypt, environment-based configuration, schema validation
+
+## Project structure
+
+```text
+src/
+  routes/
+    registration/
+    forgotpassword/
+    resetpassword/
+    mainpage/
+  lib/
+    server/
+      db.js
+      models/
+      redis.js
+    validators/
 ```
 
-To recreate this project with the same configuration:
+## Getting started
 
-```sh
-# recreate this project
-npx sv@0.16.3 create --template minimal --no-types --install npm auth_system
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+- A running MongoDB instance
+
+### Installation
+
+1. Clone the repository.
+2. Install dependencies:
+
+```bash
+npm install
 ```
 
-## Developing
+3. Create a local environment file:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+MONGODB_URI=mongodb://127.0.0.1:27017/auth-system
+```
 
-```sh
+4. Start the development server:
+
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Available scripts
 
-To create a production version of your app:
+- `npm run dev` — start the local development server
+- `npm run build` — create a production build
+- `npm run preview` — preview the production build locally
 
-```sh
-npm run build
-```
+## Environment variables
 
-You can preview the production build with `npm run preview`.
+| Variable | Required | Description |
+| --- | --- | --- |
+| `MONGODB_URI` | Yes | Connection string for your MongoDB instance |
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Roadmap
+
+- Complete login and session management
+- Add password reset email delivery
+- Introduce protected routes and role-based access control
+- Harden security with rate limiting and audit logging
+
+## License
+
+This project is intended for development and educational use. Adjust the licensing terms to fit your production deployment requirements.

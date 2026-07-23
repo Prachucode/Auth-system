@@ -4,6 +4,7 @@ import User from '$lib/server/models/UserModel.js'
 import {connectdb} from '$lib/server/db.js'
 import { email } from 'zod';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 export const actions = {
 	default: async ({ request }) => {
 		// Get form data
@@ -28,6 +29,12 @@ export const actions = {
 		await connectdb()
 
 		const user = await User.findOne({email: data.email})
+		const payload = {
+			email: data.email
+		}
+		const token = jwt.sign(payload, process.env.secretstr, {
+			expiresIn: '8h'
+		})
 		if(user) {
 			return fail(400, {
 				errors: {
@@ -43,6 +50,7 @@ export const actions = {
 			email: data.email,
 			password: hashedPassword
 		})
+		
 		return {
 			success: true
 		};
